@@ -53,7 +53,7 @@ for index, values in df.iterrows():
   #QR TEXT
   #draw.text((10,10),(f"{DEVICE}") ,fill=(0,0,0), font=font)
   
-  img.save (f"{DEVICE}.png")
+  # img.save (f"{DEVICE}.png")
   # image = pyqrcode.create(data)
   #         image.svg(f"{v['DEVICE']}.svg", scale="5")
   #single QR CODE
@@ -81,27 +81,29 @@ for index, values in df.iterrows():
   st.image(bkrnd1)
   #IMAGE INVERTED
   st.image(im_invert)
+  # img.save (f"{DEVICE}.png")
 
 
   # Save it 
   # img.save("image.png")
   # img.save("image.bmp")
   # img.save("image.jpeg")
-#   st.img.save("image.png")
+  # st.img.save("image.png")
   buf = BytesIO()
-  img.save(buf, format="png")
+  bkrnd.save(buf, format="png")
   byte_im = buf.getvalue()
   
   # DOWNLOAD BUTTON
   from io import BytesIO
   buf = BytesIO()
-  img.save(buf, format="png")
+  bkrnd1.save(buf, format="png")
   byte_im = buf.getvalue()
   btn = st.download_button(
       label="Download Image",
       data=byte_im,
       file_name=f"{DEVICE}.png",
-      mime="image/png",
+      # mime="image/png",
+      mime="application/zip",
       )
 
   

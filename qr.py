@@ -53,6 +53,7 @@ if uploaded_file is not None:
     # Create an image from the QR Code instance
     img = qr.make_image()
     img = img.convert("RGB")
+    img = ImageChops.invert(img)
 
 
     draw = ImageDraw.Draw(img)
@@ -95,7 +96,7 @@ if uploaded_file is not None:
     #IMAGE DISPLAYED IN STREAMLIT
     st.image(bkrnd1)
     #IMAGE INVERTED
-    st.image(im_invert)
+    # st.image(im_invert)
     # img.save (f"{DEVICE}.png")
 
 
@@ -112,7 +113,7 @@ if uploaded_file is not None:
     # DOWNLOAD BUTTON
     from io import BytesIO
     buf = BytesIO()
-    im_invert.save(buf, format="png")
+    bkrnd1.save(buf, format="png")
     byte_im = buf.getvalue()
     btn = st.download_button(
         label="Download Image",
@@ -123,12 +124,12 @@ if uploaded_file is not None:
         )
 
     
-    btn = st.download_button(
-        label="Download zip",
-        data=buf,
-        file_name="myfile.zip",
-        mime="application/zip"
-    )
+    # btn = st.download_button(
+    #     label="Download zip",
+    #     data=buf,
+    #     file_name="myfile.zip",
+    #     mime="application/zip"
+    # )
     #btn = st.download_button( label="Download ZIP", data=st.img, file_name="myfile.zip", mime="application/zip" )
 
 

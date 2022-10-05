@@ -14,11 +14,19 @@ from PIL import ImageDraw
 from  PIL import ImageEnhance
 from PIL import ImageChops
 
-qrsize = 4
+##GOOD SIZE
+# qrsize = 4
+# qrborder = 2
+# labelsize = (510, 116)
+# textloc = (130,30)
+# textsize = 60
+
+## 13
+qrsize = 5
 qrborder = 2
-labelsize = (510, 116)
-textloc = (130,30)
-textsize = 60
+labelsize = (730, 143)
+textloc = (155,30)
+textsize = 100
 
 st.title("QR code generator")
 uploaded_file = st.file_uploader("Choose a file")

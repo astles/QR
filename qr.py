@@ -14,8 +14,11 @@ from PIL import ImageDraw
 from  PIL import ImageEnhance
 from PIL import ImageChops
 
-qrsize = 1
-
+qrsize = 4
+qrborder = 2
+labelsize = (510, 116)
+textloc = (130,30)
+textsize = 60
 
 st.title("QR code generator")
 uploaded_file = st.file_uploader("Choose a file")
@@ -36,8 +39,8 @@ if uploaded_file is not None:
     qr = qrcode.QRCode(
       version = 1,
       error_correction = qrcode.constants.ERROR_CORRECT_H,
-      box_size = 4,
-      border = 1,
+      box_size = qrsize,
+      border = qrborder,
     )
 
   
@@ -53,7 +56,7 @@ if uploaded_file is not None:
 
 
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("fonts/HelveticaBold.ttf", 50)
+    font = ImageFont.truetype("fonts/HelveticaBold.ttf", textsize)
     #QR TEXT
     #draw.text((10,10),(f"{DEVICE}") ,fill=(0,0,0), font=font)
     
@@ -65,9 +68,9 @@ if uploaded_file is not None:
 
     qrimg = (img)
 
-    bkrnd = Image.new("RGB", (270, 90), "white")
+    bkrnd = Image.new("RGB", labelsize, "white")
     draw = ImageDraw.Draw(bkrnd)
-    draw.text((100,20),(f"{DEVICE}") ,fill=(0,0,0), font=font)
+    draw.text(textloc,(f"{DEVICE}") ,fill=(0,0,0), font=font)
     bkrnd1 = bkrnd.copy()
     bkrnd1.paste(qrimg)
 
@@ -81,6 +84,14 @@ if uploaded_file is not None:
     # inv_img = ImageChops.invert(img)
   
     im_invert = ImageChops.invert(im)
+    # im_invert = Image.open(f"./Images/UsersImages/001.png")
+    im_invert = im_invert.resize(labelsize) ### EDITED LINE
+    # im_invert.show()
+
+
+
+
+
     #IMAGE DISPLAYED IN STREAMLIT
     st.image(bkrnd1)
     #IMAGE INVERTED
@@ -101,7 +112,7 @@ if uploaded_file is not None:
     # DOWNLOAD BUTTON
     from io import BytesIO
     buf = BytesIO()
-    bkrnd1.save(buf, format="png")
+    im_invert.save(buf, format="png")
     byte_im = buf.getvalue()
     btn = st.download_button(
         label="Download Image",

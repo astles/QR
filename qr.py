@@ -87,7 +87,7 @@ for index, values in df.iterrows():
   # img.save("image.png")
   # img.save("image.bmp")
   # img.save("image.jpeg")
-  st.img.save("image.png")
+#   st.img.save("image.png")
   buf = BytesIO()
   img.save(buf, format="png")
   byte_im = buf.getvalue()

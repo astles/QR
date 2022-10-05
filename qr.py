@@ -1,4 +1,4 @@
-from asyncio.windows_events import NULL
+
 from io import BytesIO
 import streamlit as st
 import pandas as pd
@@ -13,12 +13,9 @@ from PIL import ImageFont
 from PIL import ImageDraw
 from  PIL import ImageEnhance
 
-# buf = BytesIO()
-# img.save(buf, format="JPEG")
-# byte_im = buf.getvalue()
 
 uploaded_file = st.file_uploader("Choose a file")
-#df=NULL
+
 if uploaded_file is not None:
   df = pd.read_csv(uploaded_file)
   print(df.to_string())

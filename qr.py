@@ -28,7 +28,7 @@ labelsize = (730, 143)
 textloc = (155,30)
 textsize = 100
 
-st.title("QR code generator")
+st.title("🏁QR code generator")
 uploaded_file = st.file_uploader("Choose a file")
 #df=NULL
 if uploaded_file is not None:

@@ -3,3 +3,4 @@ streamlit==1.8.1
 numpy==1.19.5
 scipy==1.6.2
 click==8
+qrcode==7.3.1

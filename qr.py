@@ -36,7 +36,7 @@ zipObj = ZipFile('myfile.zip', 'w')
 
 
 st.title("🏁QR code generator")
-uploaded_file = st.file_uploader("Choose a file")
+uploaded_file = st.file_uploader("Choose a file. Make sure your header is DEVICE in your table")
 #df=NULL
 if uploaded_file is not None:
   df = pd.read_csv(uploaded_file)

@@ -1,3 +1,4 @@
+from cProfile import label
 from ctypes.wintypes import SIZE
 from io import BytesIO
 import streamlit as st
@@ -5,7 +6,8 @@ import pandas as pd
 import qrcode #  qrcode[pil]
 import qrcode.image.svg
 import pyqrcode
-
+#IMPORT ZIP FILE
+from zipfile import ZipFile
 from math import trunc
 import numpy as np
 from PIL import Image
@@ -27,6 +29,8 @@ qrborder = 2
 labelsize = (730, 143)
 textloc = (155,30)
 textsize = 100
+zipObj = ZipFile('myfile.zip', 'w')
+
 
 st.title("🏁QR code generator")
 uploaded_file = st.file_uploader("Choose a file")
@@ -123,21 +127,36 @@ if uploaded_file is not None:
     buf = BytesIO()
     bkrnd1.save(buf, format="png")
     byte_im = buf.getvalue()
-    btn = st.download_button(
-        label="Download Image",
-        data=byte_im,
-        file_name=f"{DEVICE}.png",
-        # mime="image/png",
-        mime="application/zip",
-        )
 
+    with open(f"{DEVICE}.png", 'wb') as f: 
+       f.write(byte_im)
+        
+    zipObj.write(f"{DEVICE}.png")
     
+    # DOWNLOAD INDIVIDUAL
     # btn = st.download_button(
-    #     label="Download zip",
-    #     data=buf,
-    #     file_name="myfile.zip",
-    #     mime="application/zip"
-    # )
-    #btn = st.download_button( label="Download ZIP", data=st.img, file_name="myfile.zip", mime="application/zip" )
+    #     label="Download Image",
+    #     data=byte_im,
+    #     file_name=f"{DEVICE}.png",
+    #     # mime="image/png",
+    #     mime="application/zip",
+    #   )
+  
+
+  zipObj.close()
+  with open("myfile.zip", "rb") as fp:
+    btn = st.download_button(
+        label="Download zip",
+        data=fp,
+        file_name="myfile.zip",
+        mime="application/zip"
+    )
+  # btn = st.download_button(
+  #     label="Download zip",
+  #     data=buf,
+  #     file_name="myfile.zip",
+  #     mime="application/zip"
+  # )
+  #btn = st.download_button( label="Download ZIP", data=st.img, file_name="myfile.zip", mime="application/zip" )
 
 

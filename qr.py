@@ -15,6 +15,7 @@ from PIL import ImageFont
 from PIL import ImageDraw
 from  PIL import ImageEnhance
 from PIL import ImageChops
+# from PIL import tempfile
 
 ##GOOD SIZE
 # qrsize = 4
@@ -23,6 +24,7 @@ from PIL import ImageChops
 # textloc = (130,30)
 # textsize = 60
 
+##-----------VARIABLES-------------------
 ## 13
 qrsize = 5
 qrborder = 2
@@ -32,16 +34,22 @@ textsize = 100
 zipObj = ZipFile('myfile.zip', 'w')
 
 
+
 st.title("🏁QR code generator")
 uploaded_file = st.file_uploader("Choose a file")
 #df=NULL
 if uploaded_file is not None:
   df = pd.read_csv(uploaded_file)
   print(df.to_string())
-  st.write(df)
+  expander = st.expander("SEE TABLE DATA")
+  expander.write(df)
+  # st.write(df)
+  
   data = df['DEVICE'] 
   data = df['DEVICE'] 
   
+
+
 
   for index, values in df.iterrows(): 
     DEVICE = values["DEVICE"]

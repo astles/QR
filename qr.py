@@ -133,7 +133,7 @@ if uploaded_file is not None:
     # DOWNLOAD BUTTON
     from io import BytesIO
     buf = BytesIO()
-    bkrnd1.save(buf, format="png")
+    bkrnd1.save(buf, quality=100, dpi=(500, 500), format="png")
     byte_im = buf.getvalue()
 
     with open(f"{DEVICE}.png", 'wb') as f: 

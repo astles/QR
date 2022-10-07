@@ -126,7 +126,7 @@ if uploaded_file is not None:
     # img.save("image.jpeg")
     # st.img.save("image.png")
     buf = BytesIO()
-    bkrnd.save(buf, format="png")
+    bkrnd.save(buf, quality=100, dpi=(500, 500), format="png")
     #tee = (bkrnd.save(buf, format="png"))
     byte_im = buf.getvalue()
     

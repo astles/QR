@@ -6,3 +6,4 @@ click==8
 qrcode==7.3.1
 PyQRCode==1.2.1
 multiapp==1.0
+streamlit-multipage==0.0.18

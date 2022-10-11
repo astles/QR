@@ -23,7 +23,7 @@ from PIL import ImageChops
 
 qrsize = 5
 qrborder = 2
-labelsize = (550, 143)
+labelsize = (600, 143)
 textloc = (160,45)
 textsize = 70
 zipObj = ZipFile('myfile.zip', 'w')

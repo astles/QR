@@ -21,9 +21,9 @@ from PIL import ImageChops
 
 ##-----------VARIABLES-------------------
 
-qrsize = 1
+qrsize = 5
 qrborder = 2
-labelsize = (710, 143)
+labelsize = (700, 143)
 textloc = (155,30)
 textsize = 70
 zipObj = ZipFile('myfile.zip', 'w')

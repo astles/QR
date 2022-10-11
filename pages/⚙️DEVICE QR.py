@@ -64,7 +64,7 @@ if uploaded_file is not None:
 
   # Create qr code instance
     qr = qrcode.QRCode(
-      version = 1,
+      version = 5,
       error_correction = qrcode.constants.ERROR_CORRECT_H,
       box_size = qrsize,
       border = qrborder,

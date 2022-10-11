@@ -21,7 +21,7 @@ from PIL import ImageChops
 
 ##-----------VARIABLES-------------------
 
-qrsize = 2
+qrsize = 4
 qrborder = 2
 labelsize = (700, 143)
 textloc = (155,30)

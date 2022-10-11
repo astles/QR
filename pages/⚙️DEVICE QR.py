@@ -21,7 +21,7 @@ from PIL import ImageChops
 
 ##-----------VARIABLES-------------------
 
-qrsize = 3
+qrsize = 5
 qrborder = 2
 labelsize = (700, 143)
 textloc = (155,30)
@@ -64,7 +64,7 @@ if uploaded_file is not None:
 
   # Create qr code instance
     qr = qrcode.QRCode(
-      version = 5,
+      version = 1,
       error_correction = qrcode.constants.ERROR_CORRECT_H,
       box_size = qrsize,
       border = qrborder,

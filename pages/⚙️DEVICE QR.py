@@ -25,7 +25,7 @@ qrsize = 5
 qrborder = 2
 labelsize = (600, 143)
 textloc = (160,45)
-textsize = 70
+textsize = 60
 zipObj = ZipFile('myfile.zip', 'w')
 
 

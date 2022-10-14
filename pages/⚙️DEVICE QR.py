@@ -22,10 +22,13 @@ from PIL import ImageChops
 ##-----------VARIABLES-------------------
 
 qrsize = 5
-qrborder = 2
-labelsize = (510, 143)
+qrborder = 1.5
+labelsize = (270, 135)
 textloc = (160,45)
-textsize = 60
+textlocTop = (160,0)
+textlocMid = (160,45)
+textlocBot = (160,90)
+textsize = 55
 zipObj = ZipFile('myfile.zip', 'w')
 
 
@@ -53,13 +56,18 @@ if uploaded_file is not None:
   # st.write(df)
   
   data = df['DEVICE'] 
-  data = df['DEVICE'] 
+ 
   
 
 
 
   for index, values in df.iterrows(): 
     DEVICE = values["DEVICE"]
+    # TxtTop = (DEVICE[0:4])
+    TxtTop = (DEVICE[0]+ DEVICE[2:4])
+    TxtMid = (DEVICE[4:8])
+    TxtBot = (DEVICE[8:11])
+    
 
 
   # Create qr code instance
@@ -98,7 +106,9 @@ if uploaded_file is not None:
 
     bkrnd = Image.new("RGB", labelsize, "white")
     draw = ImageDraw.Draw(bkrnd)
-    draw.text(textloc,(f"{DEVICE}") ,fill=(0,0,0), font=font)
+    draw.text(textlocTop,(f"{TxtTop}") ,fill=(0,0,0), font=font)
+    draw.text(textlocMid,(f"{TxtMid}") ,fill=(0,0,0), font=font)
+    draw.text(textlocBot,(f"{TxtBot}") ,fill=(0,0,0), font=font)
     bkrnd1 = bkrnd.copy()
     bkrnd1.paste(qrimg)
 
@@ -166,4 +176,3 @@ if uploaded_file is not None:
         file_name="myfile.zip",
         mime="application/zip"
     )
-

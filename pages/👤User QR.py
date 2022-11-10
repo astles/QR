@@ -24,7 +24,7 @@ Wp, Hp = (200,200)
 qrsize = 5
 qrborder = 4
 labelsize = (730, 143)
-Wt, Ht = (165, 20)
+Wt, Ht = (165, 165)
 textloc = (155,30)
 textsize = 10
 textOnQr = 20
@@ -77,7 +77,7 @@ if name is not None:
 
 
 ## CREATE NEW IMAGE
-  msg = "Samuel Roherbach "
+  msg = "STest Name "
   pic = Image.new("RGB", (Wp, Hp), "white")
 
   draw = ImageDraw.Draw(pic)
@@ -85,8 +85,9 @@ if name is not None:
   font = ImageFont.truetype("fonts/HelveticaBold.ttf", textOnQr)
   _, _, wp, hp = draw.textbbox((0, 0), msg, font=font)
   draw.text(((Wp-wp)/2,0),msg, fill="black",anchor= "la", align='left',  font=font)
+  draw.text(((Wp-wp)/2,30),msg, fill="black",anchor= "la", align='left',  font=font)
   
-  st.image(pic)
+  # st.image(pic)
 
 
   imgext = '.png'
@@ -105,11 +106,29 @@ if name is not None:
   #QR TEXT
   drawtxt = ImageDraw.Draw(imgqru)
  
+  # GET IMAGE SIZE
+  print(imgqru.size)
+  Himg, Wimg = imgqru.size
+  print(Himg)
+  ##TEXT SPLIT UP
+  namebrake = (f"{name}")
+  #split string by single space
+
+  chunks = namebrake.split(' ')
+  topname = chunks[0]
+  botname = chunks[1]
+
+  print(botname)
 
   font = ImageFont.truetype("fonts/HelveticaBold.ttf", textOnQr)
   w, h = drawtxt.textsize(f"{name}")
-  _, _, wp, hp = draw.textbbox((0, 0), (f"{name}"), font=font)
-  drawtxt.text(((Wt-wp)/2, 0),(f"{name}") ,fill=(0,0,0),anchor= "la", align='center',  font=font)
+  _, _, wpt, hp = draw.textbbox((0, 0), topname, font=font)
+  _, _, wpb, hp = draw.textbbox((0, 0), botname, font=font)
+  ## Single Line Name Text
+  # drawtxt.text(((Wt-wp)/2, 0),(f"{name}") ,fill=(0,0,0),anchor= "la", align='center',  font=font)
+
+  drawtxt.text(((Wimg-wpt)/2, 0), topname ,fill=(0,0,0),anchor= "la", align='center',  font=font)
+  drawtxt.text(((Wimg-wpb)/2, (Himg-20)), botname ,fill=(0,0,0),anchor= "la", align='center',  font=font)
   # drawtxt.text((0,0),(f"{name}") ,fill=(0,0,0), font=font)
   # drawtxt.text((qrTxtPos), name, fill="black", font=font)
 

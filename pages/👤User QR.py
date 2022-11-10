@@ -20,21 +20,41 @@ from PIL import ImageChops
 
 
 ##-----------VARIABLES-------------------
-
+Wp, Hp = (300,300)
 qrsize = 5
 qrborder = 4
 labelsize = (730, 143)
+Wt, Ht = (165, 20)
 textloc = (155,30)
 textsize = 100
 textOnQr = 20
 zipObj = ZipFile('myfile.zip', 'w')
 W, H = (300,300)
+
+# qrsize = (W, H)
 # user_input = st.text_input("Enter User Name",)
 
 # im = Image.new("RGB",(W,H,"yellow"))
 # draw = ImageDraw.Draw(im)
 # w, h = draw.textsize(name)
 # qrTxtPos = ((W-w)/2,(H-h)/2)
+
+
+## HORIZONTAL ALING TEST---
+# font_size = 60
+# text = 'your text'
+# rgb_color = (255,255,255)
+
+# img = Image.open('your-image.jpg')
+# draw = ImageDraw.Draw(img)
+
+# font = ImageFont.truetype('your-font.ttf', font_size)
+
+# w, h = draw.textsize(text, font)
+
+# left = (img.width - w) / 2
+# top = 22
+
 st.title("🏁USER - QR code generator")
 uploaded_file = st.file_uploader("Choose a file. Make sure your header is USER in your table")
 
@@ -54,6 +74,16 @@ if name is not None:
   )
   print(name)
 
+
+
+## CREATE NEW IMAGE
+  msg = "theistedt"
+  pic = Image.new("RGB", (Wp, Hp))
+  draw = ImageDraw.Draw(pic)
+  wp, hp = draw.textsize("msg")
+  draw.text(((Wp-wp)/2,0),msg, fill="black")
+
+
   imgext = '.png'
   # Add data
   qru.add_data(f"{name}")
@@ -65,13 +95,43 @@ if name is not None:
   imgqru = imgqru.convert("RGB")
   # imgqru = ImageChops.invert(imgqru)
 
+  
+
   #QR TEXT
   drawtxt = ImageDraw.Draw(imgqru)
+ 
+
   font = ImageFont.truetype("fonts/HelveticaBold.ttf", textOnQr)
-  drawtxt.text((0,0),(f"{name}") ,fill=(0,0,0), font=font)
+  w, h = drawtxt.textsize(f"{name}")
+  drawtxt.text(((Wt-w)/3, 0),(f"{name}") ,fill=(0,0,0), align='center',  font=font)
+  # drawtxt.text((0,0),(f"{name}") ,fill=(0,0,0), font=font)
   # drawtxt.text((qrTxtPos), name, fill="black", font=font)
+
+
   #IMAGE DISPLAYED IN STREAMLIT
   st.image(imgqru)
+
+
+#----------------------
+  # bkrnd = Image.new("RGB", (Wt, Ht), "white")
+  # draw = ImageDraw.Draw(bkrnd)
+  # w, h = draw.textsize(f"{USER}")
+  # # draw.text(textloc,(f"{USER}") ,fill=(0,0,0), font=font)
+  # draw.text(((Wt-w)/2,(Ht-h)/2),(f"{USER}") ,fill=(0,0,0), font=font)
+  # bkrnd1 = bkrnd.copy()
+  # bkrnd1.paste(qrimg)
+
+
+
+
+#-------------------------
+
+
+
+
+
+
+
 
   from io import BytesIO
   buf = BytesIO()
@@ -142,11 +202,22 @@ if uploaded_file is not None:
 
     qrimg = (img)
 
-    bkrnd = Image.new("RGB", labelsize, "white")
+    bkrnd = Image.new("RGB", (Wt, Ht), "white")
     draw = ImageDraw.Draw(bkrnd)
-    draw.text(textloc,(f"{USER}") ,fill=(0,0,0), font=font)
+    w, h = draw.textsize(f"{USER}")
+    # draw.text(textloc,(f"{USER}") ,fill=(0,0,0), font=font)
+    draw.text(((Wt-w)/2,(Ht-h)/2),(f"{USER}") ,fill=(0,0,0), font=font)
     bkrnd1 = bkrnd.copy()
     bkrnd1.paste(qrimg)
+
+
+    ##Backup
+    # bkrnd = Image.new("RGB", labelsize, "white")
+    # draw = ImageDraw.Draw(bkrnd)
+    # draw.text(textloc,(f"{USER}") ,fill=(0,0,0), font=font)
+    # bkrnd1 = bkrnd.copy()
+    # bkrnd1.paste(qrimg)
+
 
 
     # Add data

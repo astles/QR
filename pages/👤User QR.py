@@ -20,13 +20,13 @@ from PIL import ImageChops
 
 
 ##-----------VARIABLES-------------------
-Wp, Hp = (300,300)
+Wp, Hp = (200,200)
 qrsize = 5
 qrborder = 4
 labelsize = (730, 143)
 Wt, Ht = (165, 20)
 textloc = (155,30)
-textsize = 100
+textsize = 10
 textOnQr = 20
 zipObj = ZipFile('myfile.zip', 'w')
 W, H = (300,300)
@@ -77,11 +77,16 @@ if name is not None:
 
 
 ## CREATE NEW IMAGE
-  msg = "theistedt"
-  pic = Image.new("RGB", (Wp, Hp))
+  msg = "Samuel Roherbach "
+  pic = Image.new("RGB", (Wp, Hp), "white")
+
   draw = ImageDraw.Draw(pic)
   wp, hp = draw.textsize("msg")
-  draw.text(((Wp-wp)/2,0),msg, fill="black")
+  font = ImageFont.truetype("fonts/HelveticaBold.ttf", textOnQr)
+  _, _, wp, hp = draw.textbbox((0, 0), msg, font=font)
+  draw.text(((Wp-wp)/2,0),msg, fill="black",anchor= "la", align='left',  font=font)
+  
+  st.image(pic)
 
 
   imgext = '.png'
@@ -103,7 +108,8 @@ if name is not None:
 
   font = ImageFont.truetype("fonts/HelveticaBold.ttf", textOnQr)
   w, h = drawtxt.textsize(f"{name}")
-  drawtxt.text(((Wt-w)/3, 0),(f"{name}") ,fill=(0,0,0), align='center',  font=font)
+  _, _, wp, hp = draw.textbbox((0, 0), (f"{name}"), font=font)
+  drawtxt.text(((Wt-wp)/2, 0),(f"{name}") ,fill=(0,0,0),anchor= "la", align='center',  font=font)
   # drawtxt.text((0,0),(f"{name}") ,fill=(0,0,0), font=font)
   # drawtxt.text((qrTxtPos), name, fill="black", font=font)
 

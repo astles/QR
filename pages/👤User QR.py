@@ -188,7 +188,7 @@ if uploaded_file is not None:
 
   data = df['USER'] 
     
-
+  dataEmail = df['EMAIL'] 
 
 
   for index, values in df.iterrows(): 
@@ -206,7 +206,7 @@ if uploaded_file is not None:
   
     imgext = '.png'
     # Add data
-    qr.add_data(f"{USER}")
+    qr.add_data(f"{EMAIL}")
     qr.make(fit=True)
     
 

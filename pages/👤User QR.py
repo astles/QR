@@ -271,7 +271,7 @@ if uploaded_file is not None:
     # Passing the image object to invert() 
     # inv_img = ImageChops.invert(img)
   # revert this
-    # im_invert = ImageChops.invert(im)
+    im_invert = ImageChops.invert(im)
     # im_invert = Image.open(f"./Images/UsersImages/001.png")
     im_invert = im_invert.resize(labelsize) ### EDITED LINE
     # im_invert.show()

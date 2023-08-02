@@ -65,7 +65,7 @@ email = st.text_input("User Email")
 
 # if not name:
 #   st.warning("Please Input user Name ")
-if email is not None:
+if name is not None:
 
   # Create qr code instance
   qru = qrcode.QRCode(
@@ -94,7 +94,7 @@ if email is not None:
 
   imgext = '.png'
   # Add data
-  qru.add_data(f"{name}")
+  qru.add_data(f"{email}")
   qru.make(fit=True)
 
 
@@ -169,7 +169,7 @@ if email is not None:
   btn2 = st.download_button(
     label="Download Image",
     data=byte_im,
-    file_name=f"{name}.png",
+    file_name=f"{email}.png",
     # mime="image/png",
     mime="k",
   )

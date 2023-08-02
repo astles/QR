@@ -193,7 +193,7 @@ if uploaded_file is not None:
 
   for index, values in df.iterrows(): 
     USER = values["USER"]
-
+    EMAIL = values["EMAIL"]
 
   # Create qr code instance
     qr = qrcode.QRCode(

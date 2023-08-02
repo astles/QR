@@ -58,6 +58,7 @@ W, H = (300,300)
 st.title("🏁USER - QR code generator")
 uploaded_file = st.file_uploader("Choose a file. Make sure your header is USER in your table")
 
+email = st.text_input("User Email")
 name = st.text_input("User Name for QR")
 
 
@@ -72,7 +73,7 @@ if name is not None:
     box_size = qrsize,
     border = qrborder,
   )
-  print(name)
+  print(email)
 
 
 

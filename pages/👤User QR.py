@@ -197,7 +197,7 @@ if uploaded_file is not None:
 
   # Create qr code instance
     qr = qrcode.QRCode(
-      version = 1,
+      version = 2,
       error_correction = qrcode.constants.ERROR_CORRECT_H,
       box_size = qrsize,
       border = qrborder,
@@ -209,7 +209,23 @@ if uploaded_file is not None:
     qr.add_data(f"{USER}")
     qr.make(fit=True)
     
+#######
+ 
+## CREATE NEW IMAGE
+  # msg = "STest Name "
+  # pic = Image.new("RGB", (Wp, Hp), "white")
 
+  # draw = ImageDraw.Draw(pic)
+  # wp, hp = draw.textsize("msg")
+  # font = ImageFont.truetype("fonts/HelveticaBold.ttf", textOnQr)
+  # _, _, wp, hp = draw.textbbox((0, 0), msg, font=font)
+  # draw.text(((Wp-wp)/2,0),msg, fill="black",anchor= "la", align='left',  font=font)
+  # draw.text(((Wp-wp)/2,30),msg, fill="black",anchor= "la", align='left',  font=font)
+
+#####
+
+
+    
     # Create an image from the QR Code instance
     img = qr.make_image()
     img = img.convert("RGB")
@@ -254,8 +270,8 @@ if uploaded_file is not None:
 
     # Passing the image object to invert() 
     # inv_img = ImageChops.invert(img)
-  
-    im_invert = ImageChops.invert(im)
+  # revert this
+    # im_invert = ImageChops.invert(im)
     # im_invert = Image.open(f"./Images/UsersImages/001.png")
     im_invert = im_invert.resize(labelsize) ### EDITED LINE
     # im_invert.show()

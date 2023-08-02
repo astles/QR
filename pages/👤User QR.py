@@ -194,6 +194,8 @@ if uploaded_file is not None:
   for index, values in df.iterrows(): 
     USER = values["USER"]
     EMAIL = values["EMAIL"]
+    firstname = values["FIRSTNAME"]
+    lastname = values["LASTNAME"]
 
   # Create qr code instance
     qr = qrcode.QRCode(
@@ -250,6 +252,10 @@ if uploaded_file is not None:
     w, h = draw.textsize(f"{USER}")
     # draw.text(textloc,(f"{USER}") ,fill=(0,0,0), font=font)
     draw.text(((Wt-w)/2,(Ht-h)/2),(f"{USER}") ,fill=(0,0,0), font=font)
+  # ############
+    drawtxt.text(((Wimg-wpt)/2, 0), firstname ,fill=(0,0,0),anchor= "la", align='center',  font=font)
+    drawtxt.text(((Wimg-wpb)/2, (Himg-20)), lastname ,fill=(0,0,0),anchor= "la", align='center',  font=font)
+    #######
     bkrnd1 = bkrnd.copy()
     bkrnd1.paste(qrimg)
 

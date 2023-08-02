@@ -206,7 +206,7 @@ if uploaded_file is not None:
   
     imgext = '.png'
     # Add data
-    qr.add_data(f"{EMAIL}")
+    qr.add_data(f"{USER}")
     qr.make(fit=True)
     
 

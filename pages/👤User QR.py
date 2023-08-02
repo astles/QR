@@ -65,7 +65,7 @@ email = st.text_input("User Email")
 
 # if not name:
 #   st.warning("Please Input user Name ")
-if name is not None:
+if email is not None:
 
   # Create qr code instance
   qru = qrcode.QRCode(

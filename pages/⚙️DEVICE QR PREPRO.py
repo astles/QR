@@ -23,8 +23,15 @@ from PIL import ImageChops
 
 qrsize = 5
 qrborder = 1.5
-labelsize = (270, 135)
-textloc = (160,45)
+# FS SIZE ---
+# labelsize = (270, 135)
+# textloc = (160,45)
+
+#PP SIZE
+labelsize = (500, 135)  # Make the background wider to fit the text
+qr_pos = (10, 10)  # Adjust the QR code position
+textlocLinear = (160, 45)  # Position the text to the right of the QR code
+
 textlocTop = (160,0)
 textlocMid = (160,45)
 textlocBot = (160,90)
@@ -104,8 +111,20 @@ if uploaded_file is not None:
 
     qrimg = (img)
 
-    bkrnd = Image.new("RGB", labelsize, "white")
+    bkrnd = Image.new("RGB", labelsize, "white") # Create a larger Background
     draw = ImageDraw.Draw(bkrnd)
+
+    # Place the QR code on the left
+    bkrnd.paste(qrimg, qr_pos)
+
+    # Draw the full text next to the QR
+    full_text = DEVICE  # Use full text, not split
+    draw.text(textlocLinear, full_text, fill=(0, 0, 0), font=font)
+
+    # Save and display
+    st.image(bkrnd)
+    
+    #
     # draw.text(textlocTop,(f"{TxtTop}") ,fill=(0,0,0), font=font)
     # draw.text(textlocMid,(f"{TxtMid}") ,fill=(0,0,0), font=font)
     # draw.text(textlocBot,(f"{TxtBot}") ,fill=(0,0,0), font=font)
